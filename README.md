@@ -14,11 +14,15 @@ Mikrolysreklamen is a 1:60 scale version of the large illuminated advertising si
 
 The letters of the sign is converted from whatever design format was used for the big sign to svg, which is then scaled correctly if the original design files was not scaled. The scale is set with 1px = 1mm, meaning the measurements in the file will be correct in pixels, but the measurement in mm will not be correct. This is because the next step is to export as dxf type R14. Then the svg is scaled to 1:60 and exported as dxf. R14 format retains layer information and has larger curve resolution than R12, but does not handle scale in mm well, the base unit in R14 is px.
 
-This correctly scaled dxf is imported into altium designer where it will appear as lines on the selected layer(s). These lines can be selected and converted to a polygon pour per letter, and the negative spaces can be converted to polygon pour cutouts (should be made before the polygon). The letters are added to the top silk layer since this will give a white backround in the letters same as on the large sign.
+If the design does not have a background the offset function in inkscape can be used to give an PCB outline that follows the shape of the letters. https://www.youtube.com/watch?v=EEboNn601MU
+
+This correctly scaled dxf is imported into altium designer where it will appear as lines on the selected layer(s). These lines can be selected and converted to a polygon pour per letter, and the negative spaces can be converted to polygon pour cutouts (should be made before the polygon). This is done by Tools -> Convert -> Create Polygon from selected object. Then selecting the new polygon and set it to solid fill, and uncheck the Remove Dead Copper. The original line the polygon was created from will remain. The letters are added to the top silk layer since this will give a white backround in the letters same as on the large sign.
 
 The footprint for the LEDs contain a top silk polygon pour cutout to avoid silk screen on the pads of the LEDs. The solder mask expansion, and solder mask expansion to silk screen clearance is built in to the LED footprint. (0.05mm solder mask expansion, 0.1mm solder mask to silk screen clearance)
 
-The design on the backround (if present), can be imported to the top solder layer as a polygon pour (not cutout) if the color of any copper surface finish is suitable for this design. i.e. ENIG for Lurifax and Ta-De-Du!
+The design on the background (if present), can be imported to the top solder layer as a polygon pour (not cutout) if the color of any copper surface finish is suitable for this design. i.e. ENIG for Lurifax and Ta-De-Du!
+
+The bulbs can be placed by moving the bulb circles from the svg (if they exist there) to layer 1, enable snapping to arc senters, and then moving the LEDs to the positions until they snap.
 
 ## Control circuit
 
